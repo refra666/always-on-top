@@ -19,10 +19,12 @@ function takePhoto() {
   canvas.width = video.videoWidth;
   canvas.height = video.videoHeight;
   ctx.drawImage(video, 0, 0);
+const image = canvas.toDataURL("image/png");
 
-  const image = canvas.toDataURL("image/png");
-  console.log(image); // ovdje dobiješ sliku
-}
+const img = document.createElement("img");
+img.src = image;
+document.body.appendChild(img);
+  
 </script>
 </body>
 </html>
