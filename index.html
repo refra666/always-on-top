@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<video id="video" autoplay></video>
+<button onclick="takePhoto()">Slikaj</button>
+<canvas id="canvas" style="display:none;"></canvas>
+
+<script>
+navigator.mediaDevices.getUserMedia({ video: true })
+  .then(stream => {
+    document.getElementById('video').srcObject = stream;
+  });
+
+function takePhoto() {
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  ctx.drawImage(video, 0, 0);
+
+  const image = canvas.toDataURL("image/png");
+  console.log(image); // ovdje dobiješ sliku
+}
+</script>
+</body>
+</html>
